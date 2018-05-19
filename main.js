@@ -39,6 +39,7 @@ function getRelevant(feature) {
 }
 
 function sendQuery(query) {
+	//validate with some unknown library
     console.log(query);
 
 	//send query to api
