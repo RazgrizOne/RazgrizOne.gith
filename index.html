@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>
-    SCOS map
+    Maptast!c
   </title>
   <link rel="stylesheet" href="leaflet/leaflet.css" />
   <link rel="stylesheet" href="myStyle.css" />
@@ -20,6 +20,10 @@
   <script src="plugins/color.js"></script>
   <script src="graph.js"></script>
   <script src="main.js"></script>
+
+  <script src="jquery-3.1.1.js"></script>
+  <script src="doc-ready.js"></script>
+
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -27,7 +31,7 @@
 
 <body>
 
-  <section>
+  <section name="header">
     <div id="header">
 
       <h1>Crash Data Map</h1>
@@ -40,8 +44,8 @@
     </div>
   </section>
 
-  <section>
-    <div class="otherContainer">
+  <section name="content">
+    <div id="outer" >
       <!--Elements with the hud class will layer in the order they are drawn
         Use left,right,top,bottom to place elements relative to window sides
         Is this the best way to do this? Who knows, it works well though-->
@@ -51,51 +55,13 @@
         <div id="mapDiv" ></div>
       </div>
 
-      <!-- AN EXAMPLE OF HOW TO DO TEXT
-    <div class="hud" style="right:10.5%; top:9%; width:19%; height:39%; opacity: 1; text-align: left;"><p style = "text-indent: 0px;">This map shows international tourist traffic to the U.S. in 2016. Two sets of data are being displayed.</p>
-        <p>Top 20 inbound Countries:
-            The top 20 countries ranked by number of tourists per month.</p>
-        U.S. Ports:
-        Top 15 cities for incoming tourists and the magnitude of traffic. Circle size is based on traffic.</p>
-        <p>Click on any feature to see a popup with details.
-        </p>
-     </div>
-	 -->
-
       <!-- GRAPH -->
       <div id="graphWrapper" hidden>
         <canvas id="results-graph"></canvas>
       </div>
 
-      <!-- LEGEND
-    <svg class= "hud" style= "height:140px; width:150px; background-color:#9EA3BE; top:70%; left:5%; opacity: .9; border: 5px solid #5376B3;">
-      <circle cx="30" cy="20" r="5" stroke="black" stroke-width="1" fill=#FF881F />
-      <circle cx="30" cy="42" r="10" stroke="black" stroke-width="1" fill=#FF881F />
-      <circle cx="30" cy="80" r="20" stroke="black" stroke-width="1" fill=#FF881F />
-    </svg>
-
-
-    <div class="hud" style= "height:120px; width:150px; top:70%; left:5%;">
-        <div class="hud" style= "left:14%; top: 80%">
-        <p>Incoming tourists</p>
-        </div>
-      </div>
-
-    <div class="hud" style= "height:120px; width:150px; top:70%; left:5%;">
-      <div class="hud" style= "left:50%; top:-2%">
-      <p>100,000</p>
-      <P>200,000</P>
-      <p>500,000</p>
-      </div>
-    </div>
-	-->
-
     </div>
   </section>
-  <!--Examples of how to do buttons
-  <button id="minus" , class="hud" style="left:410px; top: 10px; background-color: #57A9E0; border-color: coral; font-weight: bold; height:20px; width: 30px;" onclick="changeDate(-1)">-</button>
-  <button id="plus" , class="hud" style="left:529px; top: 10px; background-color: #6B9EC0; border-color: coral; font-weight: bold; height:20px; width: 30px;" onclick="changeDate(1)">+</button>
-  -->
 
 </body>
 

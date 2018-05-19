@@ -145,6 +145,16 @@ function getCountryColor(number) {
     }).toCSS();
 }
 
+function getSeverityColor(number) {
+    var calc = 60 - number * 10;
+
+    return Color({
+        h: calc,
+        s: 100,
+        l: 50
+    }).toCSS();
+}
+
 
 window.onload = function () {
 
@@ -183,7 +193,7 @@ window.onload = function () {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, {
                 radius: 12,
-                fillColor: "#ff7800",
+                fillColor: getSeverityColor(parseInt(feature["properties"]["crash-severity"])),
                 color: "#000",
                 weight: feature["properties"]["crash-type"],
                 opacity: 1,
