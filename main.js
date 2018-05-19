@@ -172,13 +172,13 @@ window.onload = function () {
                 radius: 12,
                 fillColor: "#ff7800",
                 color: "#000",
-                weight: 1,
+                weight: feature["properties"]["crash-type"],
                 opacity: 1,
                 fillOpacity: 0.8
             });
         }
-    }).bindPopup(function(layer){return "<dl><dt>City: "+ " </dt>"
-    + "<dt>Tourists: " + "</dt>"}
+    }).bindPopup(function(layer){return "<dl><dt>Crash-type: "+ layer.feature["properties"]["crash-type"]  + " </dt>"
+    + "<dt>Crash Severity: " +layer.feature["properties"]["crash-severity"] + "</dt>"}
 ).addTo(map);
 
 	/*

@@ -71,4 +71,5 @@ var points = {
     "datetime": "2014-01-02"
   }
 }
+]
 }
