@@ -1,3 +1,4 @@
+var points = {
 "crs": {
   "properties": {
       "name": ""
@@ -70,4 +71,4 @@
     "datetime": "2014-01-02"
   }
 }
-]
+}

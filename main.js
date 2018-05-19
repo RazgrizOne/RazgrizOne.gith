@@ -163,6 +163,24 @@ window.onload = function () {
     }).addTo(map);
 
 
+    port_markers = L.geoJSON([points], {
+
+        
+
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: 12,
+                fillColor: "#ff7800",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            });
+        }
+    }).bindPopup(function(layer){return "<dl><dt>City: "+ " </dt>"
+    + "<dt>Tourists: " + "</dt>"}
+).addTo(map);
+
 	/*
     port_markers = L.geoJSON([ports], {
 
