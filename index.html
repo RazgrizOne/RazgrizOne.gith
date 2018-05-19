@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>
-    US Tourism Map
+    SCOS map
   </title>
   <link rel="stylesheet" href="leaflet/leaflet.css" />
   <link rel="stylesheet" href="myStyle.css" />
@@ -30,7 +30,7 @@
   <section>
     <div id="header">
 
-      <p>Crash Data Map</p>
+      <h1>Crash Data Map</h1>
 
       <div name="query">
         <input type="text" id="searchTerm"/>
@@ -47,8 +47,8 @@
         Is this the best way to do this? Who knows, it works well though-->
 
       <!--MAP-->
-      <div id="mapWrapper">
-        <div id="mapDiv"></div>
+      <div id="mapWrapper" >
+        <div id="mapDiv" ></div>
       </div>
 
       <!-- AN EXAMPLE OF HOW TO DO TEXT
@@ -62,21 +62,9 @@
      </div>
 	 -->
 
-
-
-      <!--TEXT UP TOP-->
-
-    <div class="hud" style="left:440px; top:7px; width:79px; height:17px; opacity: .5; border: 5px solid #DF6F47; background-color: #833D00"></div>
-
-      <!--EXAMPLE OF HOW TO CHANGE TEXT THROUGH CODE-->
-      <div class="content" style="position:absolute; z-index:99; top:10px; left:450px; color: #ffffff">January
-        <span class='value'></span>
-      </div>
-
       <!-- GRAPH -->
-      <div class="hud" style="top:50%; right:10%; width:20%; height:40%; z-index:99;">
-
-        <canvas id="results-graph" style="z-index:99; width:100%; height:100%;"></canvas>
+      <div id="graphWrapper" hidden>
+        <canvas id="results-graph"></canvas>
       </div>
 
       <!-- LEGEND
@@ -110,11 +98,5 @@
   -->
 
 </body>
-
-
-
-<script>
-
-</script>
 
 </html>
