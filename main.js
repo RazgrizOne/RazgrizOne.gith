@@ -137,7 +137,7 @@ window.onload = function () {
 
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
-        zoom: 2,
+        zoom: 6,
         //minZoom: 2,
         zoomControl: false
         //how to change the coordinate system
