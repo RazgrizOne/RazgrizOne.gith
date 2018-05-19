@@ -25,6 +25,9 @@ var basedata = "T_2016_";
 var datastring = "T_2016_1";
 
 var port_markers
+var pointstwo
+
+var port_markerstwo
 
 //Input:  JSON feature  EX: json_data.features[i] or json_data.features["Country_name_here"]
 //Output: target feature name
@@ -59,6 +62,16 @@ function httpGet(theUrl)
     xmlhttp.send();    
 }
 
+function httpGetThis(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+
+
+}
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -73,7 +86,11 @@ function httpGetAsync(theUrl, callback)
 function sendQuery(query) {
 	//validate with some unknown library
     console.log(query);
-	console.log(httpGetAsync("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	console.log(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	pointstwo = httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data")
+	console.log(points)
+
+
 
 	//send query to api
 	//get json back
@@ -181,6 +198,8 @@ function getCountryColor(number) {
 
 window.onload = function () {
 
+
+ points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
         zoom: 12,
