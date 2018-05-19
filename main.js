@@ -38,6 +38,18 @@ function getRelevant(feature) {
     return feature.properties["name_1"] != null
 }
 
+function sendQuery(query) {
+    console.log(query);
+
+	//send query to api
+	//get json back
+	//make a new layer with json.
+
+	//points = queryreturn
+
+	//refresh layer Method
+}
+
 function getCountryPopup(feature) {
     if(getRelevant(feature)){
     return "<dl><dt>Country: "+ feature.properties.name+" </dt>"
