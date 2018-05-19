@@ -38,9 +38,42 @@ function getRelevant(feature) {
     return feature.properties["name_1"] != null
 }
 
+function httpGet(theUrl)
+{
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            return xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", theUrl, false );
+    xmlhttp.send();    
+}
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
 function sendQuery(query) {
 	//validate with some unknown library
     console.log(query);
+	console.log(httpGetAsync("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
 
 	//send query to api
 	//get json back
@@ -166,7 +199,7 @@ window.onload = function () {
             style: calcStyle,
             onEachFeature: actionMethodList
         }
-    ).bindPopup(function (layer) { return getCountryPopup(layer.feature) }
+    ).bindPopup(function (layer) { return "Whoops!" }
         ).addTo(map);
 
 
@@ -183,7 +216,7 @@ window.onload = function () {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, {
                 radius: 12,
-                fillColor: "#ff7800",
+                fillColor: "#ffffff",
                 color: "#000",
                 weight: feature["properties"]["crash-type"],
                 opacity: 1,
