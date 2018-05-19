@@ -146,10 +146,11 @@ window.onload = function () {
     });
 
     //load data from JSON file
+    //change this to the new file and then alter calcstyle and such
     data = L.geoJSON(
         json_data,
         {
-            style: calcStyle,
+            //style: calcStyle,
             onEachFeature: actionMethodList
         }
     ).bindPopup(function (layer) { return getCountryPopup(layer.feature) }
