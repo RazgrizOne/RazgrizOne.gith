@@ -32,10 +32,10 @@
 
       <p>Crash Data Map</p>
 
-      <form name="query" action="#" onsubmit="return sendQuery(this);">
-        <input type="text" />
-        <button type="submit">Query</button>
-      </form>
+      <div name="query">
+        <input type="text" id="searchTerm"/>
+        <button onclick="sendQuery(document.getElementById('serchTerm')).value;">Query</button>
+      </div>
 
     </div>
   </section>

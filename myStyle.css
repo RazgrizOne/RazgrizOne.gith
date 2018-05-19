@@ -125,7 +125,7 @@ body {
     overflow: auto;
 }
 
-    #header form{
+    #header #query{
         width: auto;
         float: right;
     }
