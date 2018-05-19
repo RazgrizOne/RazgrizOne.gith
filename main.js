@@ -137,7 +137,7 @@ window.onload = function () {
 
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
-        zoom: 6,
+        zoom: 12,
         //minZoom: 2,
         zoomControl: false
         //how to change the coordinate system
@@ -163,7 +163,7 @@ window.onload = function () {
     }).addTo(map);
 
 
-
+	/*
     port_markers = L.geoJSON([ports], {
 
         
@@ -181,6 +181,7 @@ window.onload = function () {
     }).bindPopup(function(layer){return "<dl><dt>City: "+ layer.feature.properties.City+" </dt>"
     + "<dt>Tourists: " + String(layer.feature.properties["PORTS_" + currentdate]) + "</dt>"}
 ).addTo(map);
+*/
 
     map.createPane('labels');
     map.getPane('labels').style.zIndex = 650;
