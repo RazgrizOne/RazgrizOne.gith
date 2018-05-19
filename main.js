@@ -136,7 +136,7 @@ function getCountryColor(number) {
 window.onload = function () {
 
     map = L.map('mapDiv', {
-        center: [39.9612, 82.9988],
+        center: [39.9612, -82.9988],
         zoom: 2,
         //minZoom: 2,
         zoomControl: false
