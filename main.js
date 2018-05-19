@@ -135,28 +135,14 @@ function getCountryColor(number) {
 
 window.onload = function () {
 
-
-
-    var minzoomlevel = 2;
-    var bounds = ([
-        //corner 1
-        [90, -180],
-        //corner 2
-        [-60, 350]
-    ]);
-
     map = L.map('mapDiv', {
-        center: [51.505, -0.09],
+        center: [39.9612, 82.9988],
         zoom: 2,
         minZoom: minzoomlevel,
         zoomControl: false,
         //how to change the coordinate system
         //Won't change it for mapbox though.
         //crs: L.CRS.EPSG4326,
-
-        //this limits how much the map can be panned
-        maxBounds: bounds,
-        maxBoundsViscosity: 1.0
     });
 
     //load data from JSON file
