@@ -75,7 +75,7 @@ function calcStyle(feature) {
     if (getData(feature) > 0) {
         featurecolor = "black";
         featureweight = 3;
-        opacity = 1
+        opacity = 0
     }
 
     return {
@@ -150,7 +150,7 @@ window.onload = function () {
     data = L.geoJSON(
         json_data,
         {
-            //style: calcStyle,
+            style: calcStyle,
             onEachFeature: actionMethodList
         }
     ).bindPopup(function (layer) { return getCountryPopup(layer.feature) }
