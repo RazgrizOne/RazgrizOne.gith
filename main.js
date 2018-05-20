@@ -10,14 +10,14 @@ var pointstwo
 
 var port_markerstwo
 
-var fireIcon = L.icon({
-    iconUrl: './serveimage.svg',
+var length = 14;
 
-    iconSize:     [10, 10], // size of the icon
-    //shadowSize:   [x, y], // size of the shadow
-    iconAnchor:   [5, 5], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [x, y],  // the same for the shadow
-    popupAnchor:  [10, 10] // point from which the popup should open relative to the iconAnchor
+var fireIcon = L.icon({
+
+    iconUrl: './carfire.png',
+    iconSize:     [length, length],
+    iconAnchor:   [length*0.5, length*0.5],
+    popupAnchor:  [length, length] 
 });
 
 function httpGetThis(theUrl)
@@ -163,3 +163,14 @@ window.onload = function () {
     
 
 };
+
+// window.on('zoomend', function() {
+//     var zoom = window.getZoom();
+//     fireIcon = new L.Icon({
+//         iconUrl: './CarFire.png',
+//         iconSize: [zoom, zoom],
+//         iconAnchor: [zoom*0.5, zoom*0.5],
+//         popupAnchor: [zoom, zoom],
+//     });
+//     marker.setIcon(fireIcon);
+// });
