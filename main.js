@@ -10,6 +10,8 @@ var pointstwo
 
 var port_markerstwo
 
+var fanklinCountyZones = JSON.parse("./DataFile/Franklin_County_Zoning.geojson");
+
 function httpGetThis(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -142,6 +144,13 @@ window.onload = function () {
     }).addTo(map);
 
 
-	createMarkers(points)
+    createMarkers(points)
+    
+
 }
 ;
+
+data = L.geoJSON(franklinCountyZones, {
+    style: calcStyle
+}).addTo(map);
+
