@@ -12,6 +12,29 @@ var port_markerstwo
 
 var length = 14;
 
+var timestamp = "here"
+var hours = 11
+var minutes = 0
+var time_interval = 5
+
+function add_time(){
+minutes += time_interval
+if(minutes > 59)
+{
+	hours += 1
+	minutes = 0
+}
+if(minutes > 9)
+{
+timestamp = hours.toString() + ":" + minutes.toString()
+}
+else
+{
+timestamp = hours.toString() + ":0" + minutes.toString()
+}
+
+}
+
 var fireIcon = L.icon({
 
     iconUrl: './carfire.png',
@@ -76,32 +99,6 @@ function actionMethodList(feature, layer) {
     );
 }
 
-
-function getCountryColor(number) {
-    var tempnumber = number;
-    if (number == 0) {
-        return Color({
-            b: 61,
-            g: 60,
-            r: 60
-        }).toCSS();
-    }
-
-    if (number > maxvalue) {
-        return Color({
-            h: 240,
-            s: 80,
-            l: 50
-        }).toCSS();
-    }
-
-    return Color({
-        h: 216,
-        s: number * 5,
-        l: 90 - (4 * number)
-    }).toCSS();
-}
-
 function getSeverityColor(number) {
     var calc = 60 - number * 10;
 
@@ -116,7 +113,7 @@ function removeMarkers(layer){
 map.removeLayer(layer)
 }
 
-
+//just a way to simplify creation of points
 function createMarkers(json){
     port_markers = L.geoJSON([json], {
 
@@ -142,12 +139,16 @@ function createZones(){
     }).addTo(map);
 };
 
+//Pulls down the points from the API
+//changes the date and time display. Currently faked, need timestamp from api.
 function updateData() {
-	//removeMarkers(port_Markers)
-	//points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
-	//createMarkers(points)
-	map.removeLayer(port_markers);
-    document.querySelector('.content').innerHTML = "timehere";
+	//removeMarkers(port_Markers
+	add_time()
+	map.removeLayer(port_markers)
+	points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
+	createMarkers(points)
+
+    document.querySelector('.content').innerHTML = "Time: " + timestamp;
 }
 
 
@@ -156,7 +157,7 @@ function updateData() {
 window.onload = function () {
 
 	points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
-	setInterval(updateData, 5000); 
+	setInterval(updateData, 5000);
 
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
