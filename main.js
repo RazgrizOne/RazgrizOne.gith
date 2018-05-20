@@ -62,6 +62,11 @@ function sendQuery(query) {
 
 }
 
+function turnOn(){
+
+	setInterval(updateData, 5000);
+}
+
 function getCountryPopup(feature) {
     if(getRelevant(feature)){
     return "<dl><dt>Country: "+ feature.properties.name+" </dt>"
@@ -151,10 +156,9 @@ function updateData() {
 
 
 window.onload = function () {
-	//crash_markers = {"","","","",""}
 
 	points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
-	setInterval(updateData, 5000);
+
 
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
@@ -177,14 +181,3 @@ window.onload = function () {
     
 
 };
-
-// window.on('zoomend', function() {
-//     var zoom = window.getZoom();
-//     fireIcon = new L.Icon({
-//         iconUrl: './CarFire.png',
-//         iconSize: [zoom, zoom],
-//         iconAnchor: [zoom*0.5, zoom*0.5],
-//         popupAnchor: [zoom, zoom],
-//     });
-//     marker.setIcon(fireIcon);
-// });
