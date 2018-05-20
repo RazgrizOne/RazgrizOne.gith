@@ -133,8 +133,8 @@ window.onload = function () {
         //how to change the coordinate system
         //Won't change it for mapbox though.
         //crs: L.CRS.EPSG4326,
-    });
 
+    });
 
     L.tileLayer('https://api.mapbox.com/styles/v1/amasw87/cjhe2am5i25rj2rqleqao8j0d/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW1hc3c4NyIsImEiOiJjajZ6aG50bnUwMGpqMnBvOGJjNTk0cHFvIn0.IXHyLgImAw0H_dlCs7ZEgA', {
         maxZoom: 18,
