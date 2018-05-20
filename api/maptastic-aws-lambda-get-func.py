@@ -8,10 +8,19 @@ geo_json_resp = { "crs": { "properties": { "name": ""},
                   "features": []
                 }
 
-
-SCOS_CRASH_URL = 'https://ckan.smartcolumbusos.com/api/action/datastore_search_sql?sql=SELECT%20%22DOCUMENT_NBR%22,%22CRASH_TYPE_CD%22,%22CRASH_YR%22,%22MONTH_OF_CRASH%22,%22DAY_IN_WEEK_CD%22,%22TIME_OF_CRASH%22,%22SEVERITY_BY_TYPE_CD%22,%22ODOT_LATITUDE_NBR%22,%22ODOT_LONGITUDE_NBR%22%20from%20%220b00e760-3bb0-4908-9983-04ea31a6665c%22%20WHERE%20%22CRASH_YR%22%20LIKE%20%272016%27%20AND%20%22ODOT_LATITUDE_NBR%22%20%3C%3E%20%27%27%20LIMIT%2010'
+SCOS_CRASH_URL = 'https://ckan.smartcolumbusos.com/api/action/datastore_search_sql?sql=SELECT%20%22DOCUMENT_NBR%22,%22CRASH_TYPE_CD%22,%22CRASH_YR%22,%22MONTH_OF_CRASH%22,%22DAY_IN_WEEK_CD%22,%22TIME_OF_CRASH%22,%22SEVERITY_BY_TYPE_CD%22,%22ODOT_LATITUDE_NBR%22,%22ODOT_LONGITUDE_NBR%22%20from%20%220b00e760-3bb0-4908-9983-04ea31a6665c%22%20WHERE%20%22CRASH_YR%22%20LIKE%20%272016%27%20AND%20%22MONTH_OF_CRASH%22%20LIKE%20%273%27%20AND%20%22ODOT_LATITUDE_NBR%22%20%3C%3E%20%27%27%20'
+#SCOS_CRASH_URL = 'https://ckan.smartcolumbusos.com/api/action/datastore_search_sql?sql=SELECT%20%22DOCUMENT_NBR%22,%22CRASH_TYPE_CD%22,%22CRASH_YR%22,%22MONTH_OF_CRASH%22,%22DAY_IN_WEEK_CD%22,%22TIME_OF_CRASH%22,%22SEVERITY_BY_TYPE_CD%22,%22ODOT_LATITUDE_NBR%22,%22ODOT_LONGITUDE_NBR%22%20from%20%220b00e760-3bb0-4908-9983-04ea31a6665c%22%20WHERE%20%22CRASH_YR%22%20LIKE%20%27{{year}}%27%20AND%20%22MONTH_OF_CRASH%22%20LIKE%20%27{{month}}%27%20AND%20%22ODOT_LATITUDE_NBR%22%20%3C%3E%20%27%27%20LIMIT%2050'
 
 def lambda_handler(event, context):
+    # print event['queryStringParameters']
+    # year = event['queryStringParameters']['year']
+    # month = event['queryStringParameters']['month']
+    # year = event['year']
+    # month = event['month']
+    # scos_crash_url = SCOS_CRASH_URL.replace("{{year}}", year).replace("{{month}}", month)
+    # print scos_crash_url
+
+    # req = urllib2.Request(scos_crash_url)
     req = urllib2.Request(SCOS_CRASH_URL)
     handler = urllib2.urlopen(req)
     translated_resp = geo_json_resp
@@ -39,7 +48,7 @@ def gen_feature(lat, lon, crash_type, crash_sev, year, month, day):
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [lat, lon]
+            "coordinates": [lon, lat]
         },
         "properties": {
             "crash-type": crash_type,

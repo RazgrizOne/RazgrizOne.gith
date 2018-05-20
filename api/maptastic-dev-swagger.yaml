@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2018-05-19T18:08:10Z"
+  version: "2018-05-19T23:01:21Z"
   title: "maptastic"
 host: "bgukgr16i3.execute-api.us-east-1.amazonaws.com"
 basePath: "/dev"
@@ -14,11 +14,35 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters:
+      - name: "Access-Control-Allow-Origin"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "year"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "Access-Control-Allow-Headers"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "month"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "Access-Control-Allow-Methods"
+        in: "header"
+        required: false
+        type: "string"
       responses:
         200:
           description: "200 response"
           schema:
             $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
     options:
       consumes:
       - "application/json"
