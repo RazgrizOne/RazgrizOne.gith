@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="leaflet/leaflet.css" />
   <link rel="stylesheet" href="myStyle.css" />
   <script src="leaflet/leaflet.js"></script>
-  <script src="Leaflet.Geodesic.js"></script>
   <script type="text/javascript" src="plugins/color.js"></script>
   <script src="JsonData.js"></script>
   <script src="actions.js"></script>
@@ -38,7 +37,7 @@
       <div name="query">
         <input type="text" placeholder="SQL statement" id="statement" />
         <button onClick="sendQuery(document.getElementById('statement').value);">Query</button>
-        
+		<button onClick="turnOn();">Start</button>
         <div class= "content" >Time : </div>
       </div>
 
