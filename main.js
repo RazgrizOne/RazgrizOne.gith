@@ -63,7 +63,7 @@ function sendQuery(query) {
 }
 
 function turnOn(){
-
+removeMarkers(port_markers)
 	setInterval(updateData, 5000);
 }
 
@@ -144,7 +144,7 @@ function createZones(){
 function updateData() {
 	//removeMarkers(port_Markers
 	add_time()
-	removeMarkers(port_markers)
+	//removeMarkers(port_markers)
 	//map.removeLayer(port_markers)
 	points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
 	createMarkers(points)
