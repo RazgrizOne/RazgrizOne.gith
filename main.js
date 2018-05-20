@@ -234,10 +234,10 @@ window.onload = function () {
 
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, {
-                radius: 12,
-                fillColor: "#ffffff",
-                color: "#000",
-                weight: feature["properties"]["crash-type"],
+                radius: 2,
+                fillColor: "#ffff00",
+                color: "#fff",
+                weight: .1,
                 opacity: 1,
                 fillOpacity: 0.8
             });
