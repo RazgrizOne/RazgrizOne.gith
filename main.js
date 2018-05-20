@@ -10,7 +10,15 @@ var pointstwo
 
 var port_markerstwo
 
-var fanklinCountyZones = JSON.parse("./DataFile/Franklin_County_Zoning.geojson");
+var fireIcon = L.icon({
+    iconUrl: './serveimage.svg',
+
+    iconSize:     [10, 10], // size of the icon
+    //shadowSize:   [x, y], // size of the shadow
+    iconAnchor:   [5, 5], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [x, y],  // the same for the shadow
+    popupAnchor:  [10, 10] // point from which the popup should open relative to the iconAnchor
+});
 
 function httpGetThis(theUrl)
 {
@@ -108,20 +116,18 @@ function createMarkers(json){
     port_markers = L.geoJSON([json], {
 
         pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, {
-                radius: 2,
-                fillColor: "#ff0000",
-                color: "#fff",
-                weight: .1,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
+            return L.marker(latlng, {icon: fireIcon});
         }
     }).bindPopup(function(layer){return "<dl><dt>Crash-type: "+ layer.feature["properties"]["crash-type"]  + " </dt>"
     + "<dt>Crash Severity: " +layer.feature["properties"]["crash-severity"] + "</dt>"}
 ).addTo(map);
 }
 
+function createZones(){
+    var zones = L.geoJSON(JSON.parse("/DataFile/JSONFile/Franklin_County_Zoning.geojson"), {
+        style: {}
+    }).addTo(map);
+};
 
 window.onload = function () {
 
@@ -147,10 +153,4 @@ window.onload = function () {
     createMarkers(points)
     
 
-}
-;
-
-data = L.geoJSON(franklinCountyZones, {
-    style: calcStyle
-}).addTo(map);
-
+};
