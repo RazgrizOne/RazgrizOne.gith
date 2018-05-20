@@ -25,6 +25,9 @@ var basedata = "T_2016_";
 var datastring = "T_2016_1";
 
 var port_markers
+var pointstwo
+
+var port_markerstwo
 
 //Input:  JSON feature  EX: json_data.features[i] or json_data.features["Country_name_here"]
 //Output: target feature name
@@ -38,9 +41,56 @@ function getRelevant(feature) {
     return feature.properties["name_1"] != null
 }
 
+function httpGet(theUrl)
+{
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            return xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", theUrl, false );
+    xmlhttp.send();    
+}
+
+function httpGetThis(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+
+
+}
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
 function sendQuery(query) {
 	//validate with some unknown library
     console.log(query);
+	console.log(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	pointstwo = httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data")
+	console.log(points)
+
+
 
 	//send query to api
 	//get json back
@@ -158,6 +208,8 @@ function getSeverityColor(number) {
 
 window.onload = function () {
 
+
+ points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
         zoom: 12,
@@ -176,7 +228,7 @@ window.onload = function () {
             style: calcStyle,
             onEachFeature: actionMethodList
         }
-    ).bindPopup(function (layer) { return getCountryPopup(layer.feature) }
+    ).bindPopup(function (layer) { return "Whoops!" }
         ).addTo(map);
 
 
@@ -192,10 +244,9 @@ window.onload = function () {
 
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, {
-                radius: 12,
+                radius: 4,
                 fillColor: getSeverityColor(parseInt(feature["properties"]["crash-severity"])),
                 color: "#000",
-                weight: feature["properties"]["crash-type"],
                 opacity: 1,
                 fillOpacity: 0.8
             });
