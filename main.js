@@ -132,6 +132,18 @@ function createMarkers(json){
 ).addTo(map);
 }
 
+function createLiveMarkers(json){
+    port_markers = L.geoJSON([json], {
+
+        pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, {icon: fireIcon});
+        }
+    }).bindPopup(function(layer){return "<dl><dt>Incident-type: "+ layer.feature["properties"]["Incident_1"]  + " </dt>"
+    + "<dt>Incident_ID: " +layer.feature["properties"]["inci_id"] + "</dt>"
+	+ "<dt>Incident_Number: " +layer.feature["properties"]["incident_n"] + "</dt>"}
+).addTo(map);
+}
+
 
 function createZones(){
     var zones = L.geoJSON(JSON.parse("/DataFile/JSONFile/Franklin_County_Zoning.geojson"), {
@@ -147,7 +159,7 @@ function updateData() {
 	//removeMarkers(port_markers)
 	//map.removeLayer(port_markers)
 	points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
-	createMarkers(points)
+	createLiveMarkers(points)
 
     document.querySelector('.content').innerHTML = "Time: " + timestamp;
 }
