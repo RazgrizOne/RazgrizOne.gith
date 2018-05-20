@@ -112,16 +112,29 @@ function getSeverityColor(number) {
     }).toCSS();
 }
 
+function removeMarkers(layer){
+map.removeLayer(layer)
+}
+
+
 function createMarkers(json){
     port_markers = L.geoJSON([json], {
 
         pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, {icon: fireIcon});
+                return L.circleMarker(latlng, {
+                radius:  3 ,
+                fillColor: "#ff7800",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            });
         }
     }).bindPopup(function(layer){return "<dl><dt>Crash-type: "+ layer.feature["properties"]["crash-type"]  + " </dt>"
     + "<dt>Crash Severity: " +layer.feature["properties"]["crash-severity"] + "</dt>"}
 ).addTo(map);
 }
+
 
 function createZones(){
     var zones = L.geoJSON(JSON.parse("/DataFile/JSONFile/Franklin_County_Zoning.geojson"), {
@@ -130,17 +143,20 @@ function createZones(){
 };
 
 function updateData() {
-	//points = JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	//removeMarkers(port_Markers)
+	//points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
 	//createMarkers(points)
-    document.querySelector('.content').innerHTML = "cool";
+	map.removeLayer(port_markers);
+    document.querySelector('.content').innerHTML = "timehere";
 }
 
 
 
 
 window.onload = function () {
-	setInterval(updateData, 5000); 
+
 	points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	setInterval(updateData, 5000); 
 
     map = L.map('mapDiv', {
         center: [39.9612, -82.9988],
