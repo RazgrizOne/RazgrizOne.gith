@@ -71,6 +71,10 @@ def lambda_handler(event, context):
     scos_resp = handler.read()
     scos_resp = json.loads(scos_resp)
 
+    #Ensure features list is empty before adding additional features
+    #Had issue where this seemed to contain features that we didn't expect
+    #to be there
+    translated_resp['features'] = []
     #Translate response from SCOS into GEO JSON format
     #Translate each record into the response into a GEO JSON feature
     for record in scos_resp['result']['records']:
