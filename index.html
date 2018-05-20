@@ -36,8 +36,10 @@
       <h1>Crash Data Map</h1>
 
       <div name="query">
-        <input type="text" placeholder="SQL statement" id="statement"/>
+        <input type="text" placeholder="SQL statement" id="statement" />
         <button onClick="sendQuery(document.getElementById('statement').value);">Query</button>
+        
+        <div class="content">Time : </div>
       </div>
 
 
@@ -45,11 +47,11 @@
   </section>
 
   <section name="content">
-    <div id="outer" >
-      
+    <div id="outer">
+
       <!--MAP-->
-      <div id="mapWrapper" >
-        <div id="mapDiv" ></div>
+      <div id="mapWrapper">
+        <div id="mapDiv"></div>
       </div>
 
       <!-- GRAPH -->

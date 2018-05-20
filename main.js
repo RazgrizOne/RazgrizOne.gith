@@ -129,8 +129,17 @@ function createZones(){
     }).addTo(map);
 };
 
-window.onload = function () {
+function updateData() {
+	//points = JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
+	//createMarkers(points)
+    document.querySelector('.content').innerHTML = "cool";
+}
 
+
+
+
+window.onload = function () {
+	setInterval(updateData, 5000); 
 	points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
 
     map = L.map('mapDiv', {
