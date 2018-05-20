@@ -17,6 +17,8 @@ var hours = 11
 var minutes = 0
 var time_interval = 5
 
+var crash_markers
+
 function add_time(){
 minutes += time_interval
 if(minutes > 59)
@@ -118,14 +120,7 @@ function createMarkers(json){
     port_markers = L.geoJSON([json], {
 
         pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, {
-                radius:  3 ,
-                fillColor: "#ff7800",
-                color: "#000",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
+                return L.marker(latlng, {icon: fireIcon});
         }
     }).bindPopup(function(layer){return "<dl><dt>Crash-type: "+ layer.feature["properties"]["crash-type"]  + " </dt>"
     + "<dt>Crash Severity: " +layer.feature["properties"]["crash-severity"] + "</dt>"}
@@ -144,7 +139,8 @@ function createZones(){
 function updateData() {
 	//removeMarkers(port_Markers
 	add_time()
-	map.removeLayer(port_markers)
+	removeMarkers(port_markers)
+	//map.removeLayer(port_markers)
 	points = JSON.parse(httpGetThis("https://lptakwrsp9.execute-api.us-east-1.amazonaws.com/dev/incident-data"))
 	createMarkers(points)
 
@@ -155,6 +151,7 @@ function updateData() {
 
 
 window.onload = function () {
+	//crash_markers = {"","","","",""}
 
 	points =  JSON.parse(httpGetThis("https://bgukgr16i3.execute-api.us-east-1.amazonaws.com/dev/crash-data"))
 	setInterval(updateData, 5000);
