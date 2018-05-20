@@ -1,0 +1,3 @@
+## API Gateway Integration Request Body Mapping Template**
+
+#set($inputRoot = $input.path('$'))
