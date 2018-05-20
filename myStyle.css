@@ -35,7 +35,6 @@ body {
 
 .otherContainer {
     width: 100%;
-    height: auto;
     position: absolute;
 }
 
@@ -54,7 +53,7 @@ body {
     width: inherit;
     height: inherit;
     margin: none;
-    position: absolute;
+    position: fixed;
     z-index: 1;
 }
 
@@ -75,10 +74,12 @@ body {
 
 #header {
     overflow: auto;
-    padding: 0px 0px 2% 2%;
+    display: block;
+    padding: 0 0 2% 2%;
     background-color: rgba(3, 3, 59, 1);
     color: whitesmoke;
-    position: relative;
+    position: fixed;
+    z-index: 2;
 }
 
     #header #query{
